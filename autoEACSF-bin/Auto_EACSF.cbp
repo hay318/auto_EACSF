@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Auto_EACSF"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\tools\;CMake Files\..\..\..\..\tools\Qt\;CMake Files\..\..\..\..\tools\Qt\Qt5\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Widgets\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\;CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Core\;CMake Files\src\;CMake Files\src\app\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Auto_EACSF">
+				<Option output="/NIRAL/work/hbyoon/source/autoEACSF-bin/bin/Auto_EACSF" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_NO_DEBUG"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+					<Add directory="/work/hbyoon/source/autoEACSF/src/app"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Auto_EACSF_autogen/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtWidgets"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtGui"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtCore"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/./mkspecs/linux-g++"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 Auto_EACSF"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Auto_EACSF/fast">
+				<Option output="/NIRAL/work/hbyoon/source/autoEACSF-bin/bin/Auto_EACSF" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_NO_DEBUG"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+					<Add directory="/work/hbyoon/source/autoEACSF/src/app"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Auto_EACSF_autogen/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtWidgets"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtGui"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtCore"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/./mkspecs/linux-g++"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 Auto_EACSF/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="csflib">
+				<Option output="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/libcsflib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+					<Add directory="/work/hbyoon/source/autoEACSF/src/app"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/csflib_autogen/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtWidgets"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtGui"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtCore"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/./mkspecs/linux-g++"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 csflib"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="csflib/fast">
+				<Option output="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/libcsflib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+					<Add directory="/work/hbyoon/source/autoEACSF/src/app"/>
+					<Add directory="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/csflib_autogen/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtWidgets"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtGui"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/include/QtCore"/>
+					<Add directory="/tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/./mkspecs/linux-g++"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 csflib/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Auto_EACSF_autogen">
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 Auto_EACSF_autogen"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="csflib_autogen">
+				<Option working_dir="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 csflib_autogen"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/Auto_EACSF_autogen/mocs_compilation.cpp">
+			<Option target="Auto_EACSF"/>
+		</Unit>
+		<Unit filename="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/csflib_autogen/mocs_compilation.cpp">
+			<Option target="csflib"/>
+		</Unit>
+		<Unit filename="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/moc_csfwindow.cpp">
+			<Option target="csflib"/>
+		</Unit>
+		<Unit filename="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/moc_csfwindow.cpp.rule">
+			<Option target="csflib"/>
+		</Unit>
+		<Unit filename="/NIRAL/work/hbyoon/source/autoEACSF-bin/src/app/ui_csfwindow.h">
+			<Option target="csflib"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/src/app/Auto_EACSF.cxx">
+			<Option target="Auto_EACSF"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/src/app/csfwindow.cxx">
+			<Option target="csflib"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/src/app/csfwindow.h">
+			<Option target="csflib"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/src/app/csfwindow.ui">
+			<Option target="csflib"/>
+			<Option target="csflib_autogen"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5/Qt5ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5/Qt5Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QDDSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QJp2Plugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QMngPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QXcbGlxIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/../../../../tools/Qt/Qt5/Qt5.5.1-gcc4.8.5-rhel7-castor/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\tools\Qt\Qt5\Qt5.5.1-gcc4.8.5-rhel7-castor\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/work/hbyoon/source/autoEACSF/src/app/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\app\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

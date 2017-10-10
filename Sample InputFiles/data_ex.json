@@ -1,0 +1,9 @@
+{
+    "T1img": "/some/T1/path",
+    "T2img": "/some/T2/path",
+    "BrainMask": "/some/BM/path",
+    "VentricleMask":"/some/VM/path",
+    "TissueSeg": "/some/TS/path",
+    "output_dir": "/some/od/path",
+    "output_folderName": "AUTO-EACSF RESULT"
+}

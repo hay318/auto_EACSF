@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcsflib.a  CMakeFiles/csflib.dir/csfwindow.cxx.o CMakeFiles/csflib.dir/moc_csfwindow.cpp.o CMakeFiles/csflib.dir/csflib_autogen/mocs_compilation.cpp.o
+/usr/bin/ranlib libcsflib.a
