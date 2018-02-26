@@ -10,10 +10,11 @@ import subprocess
 
 def main(argv):
 
-	Coronal_70Mask = '/NIRAL/work/hbyoon/HanBit_Work/Script/Coronal_70Mask.nrrd'
-	PRE_VENT_MASK = '/NIRAL/work/hbyoon/HanBit_Work/Script/Vent_CSF-BIN-RAI-Fusion_INV.nrrd' ##Fusion Mask
-	PRE_CEREBELLUM_MASK = '/NIRAL/work/hbyoon/HanBit_Work/Script/CVS_MASK_RAI_Dilate.nrrd'
-	Segmentation = '/NIRAL/work/hbyoon/HanBit_Work/TEST_Data/stx_noscale_718312_V24_t1w_RAI_FINAL_Seg.nrrd'
+	Coronal_70Mask = '@T1IMG@'
+	PRE_VENT_MASK = '@VENTRICLE_MASK@' ##Fusion Mask
+	PRE_CEREBELLUM_MASK = '@CEREB_MASK@'
+	Segmentation = '@TISSUE_SEG@'
+	OUT_PATH = '@OUTPUT_DIR@'
 	
 	Coronal_70Mask_dir = os.path.dirname(Coronal_70Mask)
 	Coronal_70Mask_base = os.path.splitext(os.path.basename(Coronal_70Mask))[0]
@@ -23,8 +24,7 @@ def main(argv):
 	PRE_CEREBELLUM_MASK_base = os.path.splitext(os.path.basename(PRE_CEREBELLUM_MASK))[0]
 	Segmentation_dir = os.path.dirname(Segmentation)
 	Segmentation_base = os.path.splitext(os.path.basename(Segmentation))[0]
-	
-	OUT_PATH = '/NIRAL/work/hbyoon/HanBit_Work/Test_Output'
+
 	if not (os.path.exists(OUT_PATH)):
 		os.makedirs(OUT_PATH)
 	
@@ -114,3 +114,4 @@ def main(argv):
 
 if (__name__ == "__main__"):
 	main(sys.argv)
+
