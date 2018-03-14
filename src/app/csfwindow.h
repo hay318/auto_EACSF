@@ -44,6 +44,9 @@ private:
     bool preAlign;
     bool skullStr;
 
+public slots:
+    void readyReadStandardOutput();
+
 private slots:
 
     //File
@@ -85,6 +88,8 @@ private slots:
     void on_radioButton_preAligned_clicked(bool checked);
     void on_checkBox_SkullStripping_clicked(bool checked);
     void on_checkBox_SkullStripping_stateChanged(int arg1);
+    void on_CerebellumMask_clicked();
+    void on_pushButton_execute_clicked();
 };
 
 #endif // CSFWINDOW_H

@@ -1,19 +1,34 @@
 #include "csfwindow.h"
+#include <iostream>
 #include <QFile>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QProcess>
 #include <QMessageBox>
-#include <iostream>
-#define JSON_FILE_PATH "../Desktop/test.json"
+#include <QDebug>
 #define BUFFER_SIZE 5000
 #define MAX_TOKEN_COUNT 128
-#include <QDebug>
 
 using namespace std;
+//Inputs
+QString T1img;
+QString VentricleMask;
+QString CerebMask;
+QString TissueSeg;
+QString output_dir;
 
-CSFWindow::CSFWindow(QWidget *parent) :
-    QMainWindow(parent)
-{
+//Executables
+QString ABC;
+QString ANTS;
+QString BRAINSFit;
+QString FSLBET;
+QString ImageMath;
+QString ITK;
+QString N4;
+QString Python;
+
+
+CSFWindow::CSFWindow(QWidget *parent):QMainWindow(parent){
     this->setupUi(this);
     this->initializeMenuBar();
 }
@@ -22,7 +37,6 @@ CSFWindow::~CSFWindow()
 {
 
 }
-
 
 // File
 void CSFWindow::initializeMenuBar(){
@@ -66,8 +80,8 @@ void CSFWindow::OnLoadDataConfiguration(){
     lineEdit_BrainMask->setText(dataFile.value(QString("BrainMask")).toString());
     lineEdit_VentriclMask->setText(dataFile.value(QString("VentricleMask")).toString());
     lineEdit_TissueSeg->setText(dataFile.value(QString("TissueSeg")).toString());
+    lineEdit_CerebellumMask->setText(dataFile.value(QString("CerebellumMask")).toString());
     lineEdit_OutputDir->setText(dataFile.value(QString("output_dir")).toString());
-    lineEdit_OutputFolderName->setText(dataFile.value(QString("output_folderName")).toString());
 }
 
 void CSFWindow::OnLoadParameterConfiguration(){
@@ -128,6 +142,15 @@ void CSFWindow::OnLoadSoftwareConfiguration(){
     lineEdit_ITK->setText(swFile.value(QString("ITK")).toString());
     lineEdit_N4->setText(swFile.value(QString("N4")).toString());
     lineEdit_Python->setText(swFile.value(QString("Python")).toString());
+
+    QString ABC=lineEdit_ABC->text();
+    QString ANTS=lineEdit_ANTS->text();
+    QString BRAINSFit=lineEdit_BRAINSFit->text();
+    QString FSLBET=lineEdit_FSLBET->text();
+    QString ImageMath=lineEdit_ImageMath->text();
+    QString ITK=lineEdit_ITK->text();
+    QString N4=lineEdit_N4->text();
+    QString Python=lineEdit_Python->text();
 }
 
 bool CSFWindow::OnSaveDataConfiguration(){
@@ -184,8 +207,8 @@ void CSFWindow::writeDataConfiguration_d(QJsonObject &json)
     json["BrainMask"] = lineEdit_BrainMask->text();
     json["VentricleMask"] = lineEdit_VentriclMask->text();
     json["TissueSeg"] = lineEdit_TissueSeg->text();
+    json["CerebellumMask"] = lineEdit_CerebellumMask->text();
     json["output_dir"] = lineEdit_OutputDir->text();
-    json["output_folderName"] = lineEdit_OutputFolderName->text();
 
     cout<<"Save Data Configuration"<<endl;
 }
@@ -249,6 +272,11 @@ void CSFWindow::on_pushButton_VentricleMask_clicked()
 void CSFWindow::on_pushButton_TissueSeg_clicked()
 {
     lineEdit_TissueSeg->setText(OpenFile());
+}
+
+void CSFWindow::on_CerebellumMask_clicked()
+{
+    lineEdit_CerebellumMask->setText(OpenFile());
 }
 
 void CSFWindow::on_pushButton_OutputDir_clicked()
@@ -317,7 +345,6 @@ void CSFWindow::on_pushButton_Python_clicked()
      lineEdit_Python->setText(OpenFile());
 }
 
-
 // 3rd Tab - 1.Reference Alginment, 2.Skull Stripping
 void CSFWindow::on_pushButton_ReferenceAtlasDir_clicked()
 {
@@ -342,13 +369,11 @@ void CSFWindow::on_pushButton_TissueSegAtlas_clicked()
      lineEdit_TissueSegAtlas->setText(OpenFile());
 }
 
-
 // 5th Tab - 4.Ventricle Masking
 
 // 6th Tab - 5.ANTS Registration
 
 // 7th Tab - 6.Execution
-
 void CSFWindow::on_checkBox_SkullStripping_clicked(bool checked)
 {
    // skullStr=!skullStr;
@@ -359,3 +384,50 @@ void CSFWindow::on_checkBox_SkullStripping_stateChanged(int arg1)
 
 }
 
+void CSFWindow::readyReadStandardOutput()
+{
+    cout<<"Dddddd"<<endl;
+}
+
+// Execute
+void CSFWindow::on_pushButton_execute_clicked()
+{
+    //WRITE SCRIPT
+    QFile file(QString(":/PythonScripts/script.py"));
+    file.open(QIODevice::ReadOnly);
+    QString script = file.readAll();
+//    qDebug()<<script<<endl;
+    file.close();
+
+    T1img=lineEdit_T1img->text();
+    VentricleMask=lineEdit_VentriclMask->text();
+    CerebMask=lineEdit_CerebellumMask->text();
+    TissueSeg=lineEdit_TissueSeg->text();
+    output_dir=lineEdit_OutputDir->text();
+
+    //KEY WORDS    
+    script.replace("@T1IMG@", T1img);
+    script.replace("@VENTRICLE_MASK@", VentricleMask);
+    script.replace("@CEREB_MASK@", CerebMask);
+    script.replace("@TISSUE_SEG@", TissueSeg);
+    script.replace("@OUTPUT_DIR@", output_dir);
+
+    QDir().mkdir(output_dir);
+    QString main_script = QDir::cleanPath(output_dir + QString("/main_script.py"));
+    QFile outfile(main_script);
+    outfile.open(QIODevice::WriteOnly);
+    QTextStream outstream(&outfile);
+    outstream << script;
+    outfile.close();
+
+    // RUN PYTHON    
+    QString  command("python");
+    QStringList params = QStringList() << main_script;
+    QProcess *prc = new QProcess();    
+    connect(prc, SIGNAL(readyReadStandardOutput()), SLOT(readyReadStandardOutput()));
+    //FADSTTE
+
+    prc->startDetached(command, params, output_dir);
+//    prc->waitForFinished();
+//    prc->close();
+}
