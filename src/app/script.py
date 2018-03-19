@@ -35,15 +35,13 @@ def main(argv):
             print(err, file=sys.stderr)
 
 	######### Cutting below AC-PC line ####### 	
-   	MID_TEMP01 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID01.nrrd"])) 
-	MID_TEMP02 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID02.nrrd"]))
-	MID_TEMP03 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID03.nrrd"])) 
+        MID_TEMP01 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID01.nrrd"]))
+        MID_TEMP02 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID02.nrrd"]))
+        MID_TEMP03 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID03.nrrd"]))
 
 	args=['ImageMath', MID_TEMP00, '-outfile', MID_TEMP01, '-mul', Coronal_70Mask]
         imgmath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	out, err = imgmath.communicate()
-	#errcode = imgmath.returncode
-	#print(out, err, errcode)
+        out, err = imgmath.communicate()
 
 	args=['ImageMath', MID_TEMP01, '-outfile', MID_TEMP02, '-extractLabel', '3']
         imgmath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -105,8 +103,8 @@ def main(argv):
 
 	args=['ImageStat', FINAL_OUTERCSF, '-label', FINAL_OUTERCSF, '-outbase', 
 		os.path.join( FINAL_OUTERCSF_dir, "".join([FINAL_OUTERCSF_base,"_volume.txt"]))]
-        imgmath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	out, err = imgmath.communicate()
+        imgstat = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = imgstat.communicate()
         print(out,err)
 
         print("Auto_EACSF finished")

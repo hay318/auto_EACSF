@@ -392,20 +392,19 @@ void CSFWindow::readyReadStandardOutput()
 // Execute
 void CSFWindow::on_pushButton_execute_clicked()
 {
-    //WRITE SCRIPT
+    //WRITE MAIN_SCRIPT
     QFile file(QString(":/PythonScripts/script.py"));
     file.open(QIODevice::ReadOnly);
     QString script = file.readAll();
-//    qDebug()<<script<<endl;
     file.close();
 
+    //MAIN_KEY WORDS
     T1img=lineEdit_T1img->text();
     VentricleMask=lineEdit_VentriclMask->text();
     CerebMask=lineEdit_CerebellumMask->text();
     TissueSeg=lineEdit_TissueSeg->text();
     output_dir=lineEdit_OutputDir->text();
 
-    //KEY WORDS    
     script.replace("@T1IMG@", T1img);
     script.replace("@VENTRICLE_MASK@", VentricleMask);
     script.replace("@CEREB_MASK@", CerebMask);
@@ -420,14 +419,65 @@ void CSFWindow::on_pushButton_execute_clicked()
     outstream << script;
     outfile.close();
 
+    //1. WRITE RIGID_ALIGN_SCRIPT
+    QFile rgd_file(QString(":/PythonScripts/rigid_align.py"));
+    rgd_file.open(QIODevice::ReadOnly);
+    QString rgd_script = rgd_file.readAll();
+    rgd_file.close();
+
+    rgd_script.replace("@T1_RAI_BIAS@", "./noscale_718312_V24_t1w_RAI_Bias.nrrd");
+    rgd_script.replace("@T2_RAI_BIAS@", "./noscale_718312_V24_t2w_RAI_Bias.nrrd");
+                    //@PATH@
+
+    QString rigid_align_script = QDir::cleanPath(output_dir + QString("/rigid_align_script.py"));
+    QFile rgd_outfile(rigid_align_script);
+    rgd_outfile.open(QIODevice::WriteOnly);
+    QTextStream rgd_outstream(&rgd_outfile);
+    rgd_outstream << rgd_script;
+    rgd_outfile.close();
+
+    //2. WRITE MAKE_MASK_SCRIPT
+    QFile msk_file(QString(":/PythonScripts/make_mask.py"));
+    msk_file.open(QIODevice::ReadOnly);
+    QString msk_script = msk_file.readAll();
+    msk_file.close();
+
+    msk_script.replace("@T1_RAI_BIAS@", "./noscale_718312_V24_t1w_RAI_Bias.nrrd");
+    msk_script.replace("@T2_RAI_BIAS@", "./noscale_718312_V24_t2w_RAI_Bias.nrrd");
+                    //@PATH@
+
+    QString make_mask_script = QDir::cleanPath(output_dir + QString("/make_mask_script.py"));
+    QFile msk_outfile(make_mask_script);
+    msk_outfile.open(QIODevice::WriteOnly);
+    QTextStream msk_outstream(&msk_outfile);
+    msk_outstream << msk_script;
+    msk_outfile.close();
+
+    //3. WRITE Auto_SEG XML
+        //KEYWORD INPUTS--BE CAREFUL
+
+    //4. WRITE VENT_MASK_SCRIPT
+    QFile v_file(QString(":/PythonScripts/vent_mask.py"));
+    v_file.open(QIODevice::ReadOnly);
+    QString v_script = v_file.readAll();
+    v_file.close();
+
+    v_script.replace("@TISSUE_SEG@", TissueSeg);
+    v_script.replace("@STRIPPED_CORRECTED_EMS@" ,T1img);
+        //stx_noscale_718312_V24_t1w_RAI_Striped_corrected_EMS.nrrd
+
+    QString vent_mask_script = QDir::cleanPath(output_dir + QString("/vent_mask_script.py"));
+    QFile v_outfile(vent_mask_script);
+    v_outfile.open(QIODevice::WriteOnly);
+    QTextStream v_outstream(&v_outfile);
+    v_outstream << v_script;
+    v_outfile.close();
+
     // RUN PYTHON    
     QString  command("python");
     QStringList params = QStringList() << main_script;
     QProcess *prc = new QProcess();    
     connect(prc, SIGNAL(readyReadStandardOutput()), SLOT(readyReadStandardOutput()));
-    //FADSTTE
 
     prc->startDetached(command, params, output_dir);
-//    prc->waitForFinished();
-//    prc->close();
 }
