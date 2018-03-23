@@ -392,7 +392,7 @@ void CSFWindow::readyReadStandardOutput()
 // Execute
 void CSFWindow::on_pushButton_execute_clicked()
 {
-    //WRITE MAIN_SCRIPT
+    //0. WRITE MAIN_SCRIPT
     QFile file(QString(":/PythonScripts/script.py"));
     file.open(QIODevice::ReadOnly);
     QString script = file.readAll();
