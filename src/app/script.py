@@ -1,21 +1,30 @@
 #!/tools/Python/Python-2.7.3/bin/python2.7
-##	by Hailey (Han Bit) Yoon (email: hanbit.yoon@gmail.com)
+##	by Han Bit Yoon (email: hanbit.yoon@gmail.com)
 ######################################################################################################### 
-
 from __future__ import print_function
 import os
 import sys
 import subprocess
+from subprocess import call
 import argparse
 
 def main(args):
-
 	Coronal_70Mask = args.t1
 	PRE_VENT_MASK = args.ventricleMask
 	PRE_CEREBELLUM_MASK = args.cerebellumMask
 	Segmentation = args.tissueSeg
 	OUT_PATH = args.output
 	
+	if (PRE_CEREBELLUM_MASK == "@CEREB_MASK@"):
+		call(["python", "rigid_align.py"])
+		PRE_CEREBELLUM_MASK = './stx_noscale_718312_V24_t1w_RAI_Bias.nrrd'
+	if (PRE_VENT_MASK == "@VENTRICLE_MASK@"):
+		call(["python", "make_mask.py"])
+		PRE_VENT_MASK = './stx_noscale_718312_V24_t1w_RAI_Bias_FinalMask.nrrd'
+	if (Segmentation == "@TISSUE_SEG@"):
+		call(["python", "vent_mask.py"])
+		Segmentation = './stx_noscale_718312_V24_t1w_RAI_FINAL_Seg_withoutVent.nrrd'
+		      
 	Coronal_70Mask_dir = os.path.dirname(Coronal_70Mask)
 	Coronal_70Mask_base = os.path.splitext(os.path.basename(Coronal_70Mask))[0]
 	PRE_VENT_MASK_dir = os.path.dirname(PRE_VENT_MASK)
@@ -36,9 +45,9 @@ def main(args):
 		print(err, file=sys.stderr)
 
 	######### Cutting below AC-PC line ####### 	
-    MID_TEMP01 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID01.nrrd"]))
-    MID_TEMP02 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID02.nrrd"]))
-    MID_TEMP03 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID03.nrrd"]))
+    	MID_TEMP01 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID01.nrrd"]))
+   	MID_TEMP02 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID02.nrrd"]))
+    	MID_TEMP03 = os.path.join(OUT_PATH,"".join([Segmentation_base,"_MID03.nrrd"]))
 
 	args=['ImageMath', MID_TEMP00, '-outfile', MID_TEMP01, '-mul', Coronal_70Mask]
 	imgmath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -94,10 +103,10 @@ def main(args):
 	if(err):
 		print(err, file=sys.stderr)
 
-    args=['ImageMath', MID_TEMP03, '-outfile', FINAL_OUTERCSF, '-add', PRESERVED_OUTERCSF]
-    imgmath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    	args=['ImageMath', MID_TEMP03, '-outfile', FINAL_OUTERCSF, '-add', PRESERVED_OUTERCSF]
+    	imgmath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = imgmath.communicate()
-    print(out)
+    	print(out)
 	if(err):
 		print(err, file=sys.stderr)
 	
@@ -110,13 +119,13 @@ def main(args):
 
 	args=['ImageStat', FINAL_OUTERCSF, '-label', FINAL_OUTERCSF, '-outbase', 
 	os.path.join( FINAL_OUTERCSF_dir, "".join([FINAL_OUTERCSF_base,"_volume.txt"]))]
-    imgstat = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = imgstat.communicate()
-    print(out)
+    	imgstat = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    	out, err = imgstat.communicate()
+    	print(out)
 	if(err):
 		print(err, file=sys.stderr)
 
-    print("Auto_EACSF finished")
+    	print("Auto_EACSF finished")
 	sys.exit(0);
 
 if (__name__ == "__main__"):
@@ -124,9 +133,9 @@ if (__name__ == "__main__"):
 	parser = argparse.ArgumentParser(description='Calculates outter CSF')
 	parser.add_argument('--t1', type=str, help='T1 Image', default="@T1IMG@")
 	parser.add_argument('--ventricle-mask', type=str, help='Ventricle mask', help='Ventricle mask', default="@VENTRICLE_MASK@")
-	parser.add_argument('--cerebellum-mask', type=str, help='Ventricle mask', help='Ventricle mask', default="@CEREB_MASK@")
-	parser.add_argument('--tissue-seg', type=str, help='Ventricle mask', help='Ventricle mask', default="@TISSUE_SEG@")
-	parser.add_argument('--output', type=str, help='Ventricle mask', help='Ventricle mask', default="@OUTPUT_DIR@")
+	parser.add_argument('--cerebellum-mask', type=str, help='Cereb Mask', help='Cereb Mask', default="@CEREB_MASK@")
+	parser.add_argument('--tissue-seg', type=str, help='Tissue Segmentation', help='Tissue Segmentation', default="@TISSUE_SEG@")
+	parser.add_argument('--output', type=str, help='Output directory', help='Output directory', default="@OUTPUT_DIR@")
 
 	args = parser.parse_args()
 
