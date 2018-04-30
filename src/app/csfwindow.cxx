@@ -6,12 +6,15 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QDebug>
+#include <QtCore>
+
 #define BUFFER_SIZE 5000
 #define MAX_TOKEN_COUNT 128
 
 using namespace std;
 //Inputs
 QString T1img;
+QString T2img;
 QString VentricleMask;
 QString CerebMask;
 QString TissueSeg;
@@ -26,7 +29,6 @@ QString ImageMath;
 QString ITK;
 QString N4;
 QString Python;
-
 
 CSFWindow::CSFWindow(QWidget *parent):QMainWindow(parent){
     this->setupUi(this);
@@ -376,17 +378,14 @@ void CSFWindow::on_pushButton_TissueSegAtlas_clicked()
 // 7th Tab - 6.Execution
 void CSFWindow::on_checkBox_SkullStripping_clicked(bool checked)
 {
-   // skullStr=!skullStr;
 }
 
 void CSFWindow::on_checkBox_SkullStripping_stateChanged(int arg1)
 {
-
 }
 
 void CSFWindow::readyReadStandardOutput()
 {
-    cout<<"Dddddd"<<endl;
 }
 
 // Execute
@@ -425,9 +424,10 @@ void CSFWindow::on_pushButton_execute_clicked()
     QString rgd_script = rgd_file.readAll();
     rgd_file.close();
 
-    rgd_script.replace("@T1_RAI_BIAS@", "./noscale_718312_V24_t1w_RAI_Bias.nrrd");
-    rgd_script.replace("@T2_RAI_BIAS@", "./noscale_718312_V24_t2w_RAI_Bias.nrrd");
-                    //@PATH@
+    rgd_script.replace("@T1IMG@", "./noscale_718312_V24_t1w_RAI_Bias.nrrd");
+    rgd_script.replace("@T2IMG@", "./noscale_718312_V24_t2w_RAI_Bias.nrrd");
+    rgd_script.replace("@ATLAS@", "./atlas_T1_sym_RAI.nrrd");
+    rgd_script.replace("@OUTPUT_DIR@", output_dir);
 
     QString rigid_align_script = QDir::cleanPath(output_dir + QString("/rigid_align_script.py"));
     QFile rgd_outfile(rigid_align_script);
@@ -442,9 +442,11 @@ void CSFWindow::on_pushButton_execute_clicked()
     QString msk_script = msk_file.readAll();
     msk_file.close();
 
-    msk_script.replace("@T1_RAI_BIAS@", "./noscale_718312_V24_t1w_RAI_Bias.nrrd");
-    msk_script.replace("@T2_RAI_BIAS@", "./noscale_718312_V24_t2w_RAI_Bias.nrrd");
-                    //@PATH@
+    msk_script.replace("@T1IMG@", "./stx_noscale_718312_V24_t1w_RAI_Bias.nrrd");
+    msk_script.replace("@T2IMG@", "./stx_noscale_718312_V24_t2w_RAI_Bias.nrrd");
+    msk_script.replace("@ATLAS_PATH@", "./over6m/");
+    msk_script.replace("@MNI_ATLAS_PATH@", "./MNIATLAS/");
+    msk_script.replace("@BIGCSF_ATLAS_PATH@", "./MulSegAtlas/");
 
     QString make_mask_script = QDir::cleanPath(output_dir + QString("/make_mask_script.py"));
     QFile msk_outfile(make_mask_script);
@@ -454,7 +456,11 @@ void CSFWindow::on_pushButton_execute_clicked()
     msk_outfile.close();
 
     //3. WRITE Auto_SEG XML
-        //KEYWORD INPUTS--BE CAREFUL
+    QFile xmlFile(QString(":/PythonScripts/ABCparam.xml"));
+    xmlFile.open(QIODevice::ReadOnly);
+    xml.setDevice(&xmlFile);
+    xml.readNext();
+    xml.text().toString();
 
     //4. WRITE VENT_MASK_SCRIPT
     QFile v_file(QString(":/PythonScripts/vent_mask.py"));
@@ -462,9 +468,13 @@ void CSFWindow::on_pushButton_execute_clicked()
     QString v_script = v_file.readAll();
     v_file.close();
 
-    v_script.replace("@TISSUE_SEG@", TissueSeg);
-    v_script.replace("@STRIPPED_CORRECTED_EMS@" ,T1img);
-        //stx_noscale_718312_V24_t1w_RAI_Striped_corrected_EMS.nrrd
+    v_script.replace("@T1IMG@", "./stx_noscale_718312_V24_t1w_RAI_Bias.nrrd");
+    v_script.replace("@ATLAS@", "./atlas_T1_sym_stripped_RAI-byte.nrrd");
+    v_script.replace("@IMAGEMETRIC@", "");
+    v_script.replace("@TISSUE_SEG@", "./stx_noscale_718312_V24_t1w_RAI_FINAL_Seg.nrrd");
+    v_script.replace("@VENTRICLE_MASK@" ,"./Vent_CSF-BIN-RAI-Fusion_INV.nrrd");
+    v_script.replace("@OUTPUT_DIR@", output_dir);
+    v_script.replace("@OUTPUT_MASK@", "_AtlasToVent.nrrd");
 
     QString vent_mask_script = QDir::cleanPath(output_dir + QString("/vent_mask_script.py"));
     QFile v_outfile(vent_mask_script);
@@ -473,11 +483,16 @@ void CSFWindow::on_pushButton_execute_clicked()
     v_outstream << v_script;
     v_outfile.close();
 
+    //Notification
+    QMessageBox::information(
+        this,
+        tr("Auto EACSF"),
+        tr("Python scripts are running. It may take up to 24 hours to process.") );
+
     // RUN PYTHON    
     QString  command("python");
     QStringList params = QStringList() << main_script;
     QProcess *prc = new QProcess();    
     connect(prc, SIGNAL(readyReadStandardOutput()), SLOT(readyReadStandardOutput()));
-
     prc->startDetached(command, params, output_dir);
 }

@@ -1,16 +1,19 @@
 #!/tools/Python/Python-2.7.3/bin/python2.7
 ##	by Hailey (Han Bit) Yoon (email: hanbit.yoon@gmail.com)
 #########################################################################################################  
-
 import sys
 import os
+import argparse
 import subprocess
-from optparse import OptionParser
 
-def main(opts, argv):
-        T1 = '@T1_RAI_BIAS@'
-        T2 = '@T2_RAI_BIAS@'
-	
+def main(args):
+        T1 = args.t1
+        T2 = args.t2
+        ATLAS_PATH = args.atlasPath
+        COLIN_ATLAS_PATH = args.mniAtlasPath
+        ICMB152_ATLAS_PATH = args.mniAtlasPath
+        BIGCSF_ATLAS_PATH = args.bigcsfAtlasPath
+
 	T1_dir = os.path.dirname(T1)
 	T1_base = os.path.splitext(os.path.basename(T1))[0]
 	T2_dir = os.path.dirname(T2)
@@ -39,13 +42,6 @@ def main(opts, argv):
 	
 	os.system('bet %s %s -f 0.52 -g 0.2 -m -n -A2 %s -R ' %(Input_T2_NII,T2_Joint_T1_Mask1,Input_T1_NII) )
 	os.system('bet %s %s -f 0.52 -g -0.2 -m -n -A2 %s -R ' %(Input_T2_NII,T2_Joint_T1_Mask2,Input_T1_NII) )
-	#args=['bet', Input_T2_NII, T2_Joint_T1_Mask1,'-f','0.52','-g','0.2','-m','-n','-A2',Input_T1_NII,'-R ']
-        #bet = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	#out, err = bet.communicate()
-
-	#args=['bet', Input_T2_NII, T2_Joint_T1_Mask2,'-f','0.52','-g','-0.2','-m','-n','-A2',Input_T1_NII,'-R ']
-        #bet = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	#out, err = bet.communicate()
 	
 	T2_Joint_T1_Mask1 = os.path.join(T2_Joint_T1_Mask1, "_mask.nii.gz")	
 	T2_Joint_T1_Mask2 = os.path.join(T2_Joint_T1_Mask2, "_mask.nii.gz")	
@@ -102,9 +98,7 @@ def main(opts, argv):
        		ImgMath = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = ImgMath.communicate()
 	
-	##--> IBIS 1yr or 6m T1 only (ANTs Warp)
-	ATLAS_PATH = './over6m/'
-	
+        ##--> IBIS 1yr or 6m T1 only (ANTs Warp)
 	ATLAS = os.path.join(ATLAS_PATH,"template.gipl")
 	ATLAS_MASK = os.path.join(ATLAS_PATH, "EDITEDmask2.nrrd")
 
@@ -130,7 +124,6 @@ def main(opts, argv):
 	out, err = WarpImg.communicate()	
 
 	##--> Colin27 T1 Only (ANTs Warp)
-	COLIN_ATLAS_PATH = '/NIRAL/work/shkim/PROJECTS/Proj_caCSF_HanBit/Script/ETC/MASK_STUFF/MNIATLAS/'
 	COLIN_ATLAS = os.path.join(COLIN_ATLAS_PATH, "colin27_t1_tal_lin.nrrd")
 	COLIN_MASK = os.path.join(COLIN_ATLAS_PATH, "colin27_t1_tal_lin_mask.nrrd")
 	COLIN_OUT_MASK = os.path.join(T2_dir, "".join([T2_base,"_Colin27_mask.nrrd"]))	
@@ -143,7 +136,6 @@ def main(opts, argv):
 	out, err = WarpImg.communicate()
 	
 	##-->ICBM152 T1 T2 Jointly (ANTs Warp)
-	ICMB152_ATLAS_PATH = '/NIRAL/work/shkim/PROJECTS/Proj_caCSF_HanBit/Script/ETC/MASK_STUFF/MNIATLAS/'
 	ICMB152_T1_ATLAS = os.path.join(ICMB152_ATLAS_PATH, "mni_icbm152_t1_tal_nlin_sym_09a.nrrd")
 	ICMB152_T2_ATLAS = os.path.join(ICMB152_ATLAS_PATH, "mni_icbm152_t2_tal_nlin_sym_09a.nrrd")
 	ICMB152_MASK = os.path.join(ICMB152_ATLAS_PATH, "mni_icbm152_t1_tal_nlin_sym_09a_mask.nrrd")
@@ -156,9 +148,7 @@ def main(opts, argv):
        	WarpImg = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = WarpImg.communicate()
 	
-	##--> LargeCSF Case (Autism) T1 T2 Jointly (ANTs Warp)
-	BIGCSF_ATLAS_PATH = '/NIRAL/work/shkim/PROJECTS/Proj_caCSF_HanBit/Script/ETC/MASK_STUFF/MulSegAtlas/'
-	
+	##--> LargeCSF Case (Autism) T1 T2 Jointly (ANTs Warp)	
 	BIGCSF01_T1_ATLAS = os.path.join(BIGCSF_ATLAS_PATH, "stx_5067_004_t3_mprage.nrrd")
 	BIGCSF01_T2_ATLAS = os.path.join(BIGCSF_ATLAS_PATH, "stx_5067_004_t3_3DT2.nrrd")
 	BIGCSF01_MASK = os.path.join(BIGCSF_ATLAS_PATH, "stx_5067_004_t3_mprage_FinalMask.nrrd")
@@ -207,8 +197,11 @@ def main(opts, argv):
 ##############################################################################################################
 
 if (__name__ == "__main__"):
-	parser = OptionParser(usage="%prog t1w.nrrd t2w.nrrd [options]")
-	parser.add_option("-o","--OTSU",action="store_true", dest="verboseOTSU", default=False, help="apply otsu using ImageMath")
-	parser.add_option("-v",action="store", dest="VISIT",type="string", help="Visit (e.g. V12, V24..)",default="")
-	(opts, argv) = parser.parse_args()	
-	main(opts, argv)
+    parser = argparse.ArgumentParser(description='Makes Mask')
+    parser.add_argument('--t1', type=str, help='T1 Image to calculate deformation field against atlas', default="@T1IMG@")
+    parser.add_argument('--t2', type=str, help='T2 Image to calculate deformation field against atlas', default="@T2IMG@")
+    parser.add_argument('--atlasPath', type=str, help='Atlas path', default="@ATLAS_PATH@")
+    parser.add_argument('--mniAtlasPath', type=str, help='MNI Atlas path', default="@MNI_ATLAS_PATH@")
+    parser.add_argument('--bigcsfAtlasPath', type=str, help='BIGCSF Atlas path', default="@BIGCSF_ATLAS_PATH@")
+    args = parser.parse_args()
+    main(args)

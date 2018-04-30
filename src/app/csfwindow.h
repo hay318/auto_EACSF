@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QtCore>
 
 #include "ui_csfwindow.h"
 
@@ -43,6 +44,9 @@ private:
     bool notPreAlign;
     bool preAlign;
     bool skullStr;
+
+    //Scripts
+    QXmlStreamReader xml;
 
 public slots:
     void readyReadStandardOutput();
