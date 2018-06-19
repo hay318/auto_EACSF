@@ -21,7 +21,7 @@ $ make
 ```
 4. Get the executable
 ```
-$ ./auto_EACSF-bin/bin/auto_EACSF
+$ ./bin/auto_EACSF
 ```
 
 # How to fix an error?
