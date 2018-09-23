@@ -29,14 +29,14 @@ $ ./Auto_EACSF
 ```
 
 Necessary Executables
-- ABC: 
-- ANTs: 
-- BRAINSFit:
+- ABC 
+- ANTs 
+- BRAINSFit
 - FSL-BET
-- ImageMath:
-- ITK Transform Tools:
-- N4: 
-- Python: 
+- ImageMath
+- ITK Transform Tools
+- N4
+- Python 
 
 # How to fix an error?
 You can fix an error by utilizing Qtcreator
